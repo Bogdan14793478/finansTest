@@ -13,6 +13,8 @@ export const Card: React.FC<CardProps> = ({ item }) => {
   const colorBackground = item.ticker
   const company = item.ticker
   const changeValidity = item.change_percent > 0 ? Validity.Green : Validity.Red
+  const changeDividend = item.dividend > 0 ? Validity.Green : Validity.Red
+  const changeIncome = item.yield > 0 ? Validity.Green : Validity.Red
 
   return (
     <div className="line-container">
@@ -25,6 +27,13 @@ export const Card: React.FC<CardProps> = ({ item }) => {
       <p className="line-price">{formatCurrency(item.price)}</p>
       <p className={`percent ${changeValidity}`}>
         {displayPercent(item.change_percent)}
+      </p>
+      <p>
+        Dividend:{" "}
+        <span className={`devident ${changeDividend}`}> {item.dividend}</span>
+      </p>
+      <p>
+        Income: <span className={`devident ${changeIncome}`}> {item.yield}</span>
       </p>
     </div>
   )
