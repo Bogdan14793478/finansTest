@@ -16,32 +16,24 @@ export const Card: React.FC<CardProps> = ({ item }) => {
 
   return (
     <div className="line-container">
-      {item.ticker && (
-        <>
-          <p className={`comp-name ${item.ticker}`}>{item.ticker}</p>
-          <p className="line-company-name">
-            {DecodeName[item.ticker as keyof typeof DecodeName]}
-          </p>
-        </>
-      )}
-      {item.price && <p className="line-price">{formatCurrency(item.price)}</p>}
-      {item.change_percent && (
-        <p className={`percent ${changeViewBackground}`}>
-          {displayPercent(item.change_percent)}
+      <>
+        <p className={`comp-name ${item.ticker}`}>{item.ticker}</p>
+        <p className="line-company-name">
+          {DecodeName[item.ticker as keyof typeof DecodeName]}
         </p>
-      )}
-      {item.dividend && (
-        <p>
-          Dividend:
-          <span className={`dividend ${changeViewBackground}`}>{item.dividend}</span>
-        </p>
-      )}
-      {item.yield && (
-        <p>
-          Income:
-          <span className={`dividend ${changeViewBackground}`}> {item.yield}</span>
-        </p>
-      )}
+      </>
+      <p className="line-price">{formatCurrency(item.price)}</p>
+      <p className={`percent ${changeViewBackground}`}>
+        {displayPercent(item.change_percent)}
+      </p>
+      <p>
+        Dividend:
+        <span className={`dividend ${changeViewBackground}`}>{item.dividend}</span>
+      </p>
+      <p>
+        Income:
+        <span className={`dividend ${changeViewBackground}`}> {item.yield}</span>
+      </p>
     </div>
   )
 }

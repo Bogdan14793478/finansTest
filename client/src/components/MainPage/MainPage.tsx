@@ -12,9 +12,9 @@ import { Loader } from "../Loader/Loader"
 
 export const MainPage = () => {
   // work with state
-  // const [, setValue] = useRecoilState(informationAboutQuotations)
+  // const [, setStateInformationQuotations] = useRecoilState(informationAboutQuotations)
 
-  // const tickets = useRecoilValue(informationAboutQuotations)
+  // const informationQuotations = useRecoilValue(informationAboutQuotations)
 
   // useEffect(() => {
   //   const socket = io("http://localhost:4000/")
@@ -23,30 +23,30 @@ export const MainPage = () => {
   //   })
   // }, [setValue])
 
-  const [state, setState] = useState<undefined | InformationQuotationsType[]>(
-    undefined
-  )
+  const [informationQuotations, setStateInformationQuotations] = useState<
+    undefined | InformationQuotationsType[]
+  >(undefined)
 
   useEffect(() => {
     const socket = io("http://localhost:4000/")
     socket.on("res-ticket", data => {
-      setState(data)
+      setStateInformationQuotations(data)
     })
   }, [])
 
   return (
     <div className="container">
-      {state && (
+      {informationQuotations && (
         <>
           <div>Вас это может заинтерисовать</div>
-          {state.map((item: InformationQuotationsType) => (
+          {informationQuotations.map((item: InformationQuotationsType) => (
             <div key={uuidv4()}>
               <Card item={item} />
             </div>
           ))}
         </>
       )}
-      {!state && <Loader />}
+      {!informationQuotations && <Loader />}
     </div>
   )
 }
