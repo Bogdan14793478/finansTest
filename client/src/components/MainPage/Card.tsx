@@ -33,10 +33,7 @@ export const Card: React.FC<CardProps> = ({ item }) => {
       {item.dividend && (
         <p>
           Dividend:
-          <span className={`dividend ${changeViewBackground}`}>
-            {" "}
-            {item.dividend}
-          </span>
+          <span className={`dividend ${changeViewBackground}`}>{item.dividend}</span>
         </p>
       )}
       {item.yield && (
