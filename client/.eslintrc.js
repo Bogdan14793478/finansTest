@@ -60,6 +60,5 @@ module.exports = {
     "react/require-default-props": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    // "import/prefer-default-export": ["off" | "warn" | "error", { target: "single" }],
   },
 }
