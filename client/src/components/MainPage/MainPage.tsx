@@ -34,11 +34,13 @@ export const MainPage = () => {
     })
   }, [])
 
+  const text = "Вас это может заинтересовать"
+
   return (
     <div className="container">
       {informationQuotations && (
         <>
-          <div>Вас это может заинтерисовать</div>
+          <div>{text}</div>
           {informationQuotations.map((item: InformationQuotationsType) => (
             <div key={uuidv4()}>
               <Card item={item} />
