@@ -1,5 +1,3 @@
-/* eslint-disable no-useless-concat */
-/* eslint-disable prefer-template */
 import React from "react"
 import { displayPercent, formatCurrency } from "../../helpers/helpers"
 import { InformationQuotationsType } from "../../states"
@@ -10,31 +8,43 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ item }) => {
-  const colorBackground = item.ticker
-  const company = item.ticker
-  const changeValidity = item.change_percent > 0 ? Validity.Green : Validity.Red
-  const changeDividend = item.dividend > 0 ? Validity.Green : Validity.Red
-  const changeIncome = item.yield > 0 ? Validity.Green : Validity.Red
+  // eslint-disable-next-line operator-linebreak
+  const changeViewBackground =
+    item.change_percent > 0 && item.dividend > 0 && item.yield > 0
+      ? Validity.Green
+      : Validity.Red
 
   return (
     <div className="line-container">
-      <p className={`comp-name ${colorBackground}`}>{item.ticker}</p>
-      {company && (
-        <p className="line-company-name">
-          {DecodeName[company as keyof typeof DecodeName]}
+      {item.ticker && (
+        <>
+          <p className={`comp-name ${item.ticker}`}>{item.ticker}</p>
+          <p className="line-company-name">
+            {DecodeName[item.ticker as keyof typeof DecodeName]}
+          </p>
+        </>
+      )}
+      {item.price && <p className="line-price">{formatCurrency(item.price)}</p>}
+      {item.change_percent && (
+        <p className={`percent ${changeViewBackground}`}>
+          {displayPercent(item.change_percent)}
         </p>
       )}
-      <p className="line-price">{formatCurrency(item.price)}</p>
-      <p className={`percent ${changeValidity}`}>
-        {displayPercent(item.change_percent)}
-      </p>
-      <p>
-        Dividend:{" "}
-        <span className={`devident ${changeDividend}`}> {item.dividend}</span>
-      </p>
-      <p>
-        Income: <span className={`devident ${changeIncome}`}> {item.yield}</span>
-      </p>
+      {item.dividend && (
+        <p>
+          Dividend:
+          <span className={`dividend ${changeViewBackground}`}>
+            {" "}
+            {item.dividend}
+          </span>
+        </p>
+      )}
+      {item.yield && (
+        <p>
+          Income:
+          <span className={`dividend ${changeViewBackground}`}> {item.yield}</span>
+        </p>
+      )}
     </div>
   )
 }
