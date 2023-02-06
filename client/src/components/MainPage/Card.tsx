@@ -5,9 +5,10 @@ import { DecodeName, Validity } from "./types"
 
 interface CardProps {
   item: InformationQuotationsType
+  hideTicket: (name: string) => void
 }
 
-export const Card: React.FC<CardProps> = ({ item }) => {
+export const Card: React.FC<CardProps> = ({ item, hideTicket }) => {
   // eslint-disable-next-line operator-linebreak
   const changeViewBackground =
     item.change_percent > 0 && item.dividend > 0 && item.yield > 0
@@ -34,6 +35,13 @@ export const Card: React.FC<CardProps> = ({ item }) => {
         Income:
         <span className={`dividend ${changeViewBackground}`}> {item.yield}</span>
       </p>
+      <button
+        className="btn-ticket"
+        type="button"
+        onClick={() => hideTicket(item.ticker)}
+      >
+        -
+      </button>
     </div>
   )
 }

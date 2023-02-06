@@ -15,3 +15,8 @@ export const informationAboutQuotations = atom<InformationQuotationsType[]>({
   key: "informationAboutQuotations",
   default: undefined,
 })
+
+export const filteredInformationAboutQuotations = atom<string[]>({
+  key: "filteredInformationAboutQuotations",
+  default: [],
+})
