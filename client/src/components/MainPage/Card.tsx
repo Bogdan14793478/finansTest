@@ -1,10 +1,10 @@
 import React from "react"
 import { displayPercent, formatCurrency } from "../../helpers/helpers"
-import { InformationQuotationsType } from "../../states"
+import { TicketsType } from "../../redux/reducers/financialQuotes"
 import { DecodeName, Validity } from "./types"
 
 interface CardProps {
-  item: InformationQuotationsType
+  item: TicketsType
   hideTicket: (name: string) => void
 }
 
