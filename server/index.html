@@ -24,12 +24,6 @@
       socket.on("ticker", function (response) {
         const res = Array.isArray(response) ? response : [response];
         socket.emit("res", res);
-        const json = res.map((item) => JSON.stringify(item)).join("\n");
-        const data = $(`<pre>${json}</pre><hr />`);
-        $("#quotes").append(data);
-        $("html, body").animate({ scrollTop: $(document).height() }, 100);
-        $(data).show("slide", { direction: "up" }, 300);
-        $(data).effect("highlight", {}, 1500);
       });
     });
   </script>
